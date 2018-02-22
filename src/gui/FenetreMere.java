@@ -1,4 +1,5 @@
 package gui;
+import knowey.*;
 import javax.swing.*;
 import javax.swing.JOptionPane;
 
@@ -15,7 +16,8 @@ public class FenetreMere extends JFrame
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
-		InterfaceG laInterface = new InterfaceG(this, chUtilisateur);
+		Brain nekiyaK = new Brain();
+		InterfaceG laInterface = new InterfaceG(nekiyaK, this, chUtilisateur);
 		laInterface.chSaisie.requestFocus();
 		}
 	

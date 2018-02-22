@@ -1,16 +1,12 @@
 package gui;
+import knowey.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -23,10 +19,13 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	String chUtilisateur;
 	JTextArea chUser;
 	JLabel chNekiyaIsTyping;
+	Brain Nekiya;
+	String chReponse;
 	
-	public InterfaceG(FenetreMere parFenetre, String parUtilisateur)
+	public InterfaceG(Brain Nekiya, FenetreMere parFenetre, String parUtilisateur)
 		{
 		chUtilisateur = parUtilisateur;
+		Nekiya = Nekiya;
 		
 		JPanel lePanel = new JPanel();
 		JPanel lePanel2 = new JPanel();
@@ -77,10 +76,14 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_ENTER)
 			{
-			chDiscussion.append(chUtilisateur + ": " + chSaisie.getText() + "\n");
-			e.consume();
+			String phraseUser = chSaisie.getText();
+			chDiscussion.append(chUtilisateur + ": " + phraseUser + "\n");
+//			e.consume();
 			chSaisie.setText(null);
 			chSaisie.requestFocus(true);
+			Nekiya.penser(phraseUser);
+			chReponse = Nekiya.getReponse();
+			chDiscussion.append("Nekiya :" + chReponse + "\n");
 			}
 		}
 

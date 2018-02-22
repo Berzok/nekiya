@@ -1,28 +1,57 @@
 package knowey;
+import java.io.*;
 
 public class Brain
 	{
 	String[] chPhraseVirgules;
 	String[] chMotsPhrase;
+	String[] chPhrase;
+	String chPhraseReponse;
 	
-	public Brain(String parPhraseU)
+	public Brain()
 		{
-		chPhraseVirgules = parPhraseU.split(",");
-		String tampon = new String();
-		for(int i=0; i<chPhraseVirgules.length; i++)
-			{
-			tampon = tampon + chPhraseVirgules[i];
-			System.out.print(i + " " + chPhraseVirgules[i] + "\n");
-			System.out.print(tampon);
-			}
-		chMotsPhrase = tampon.split(" ");
-		for(int i=0; i<chMotsPhrase.length; i++)
-			{
-			System.out.print(i + " " + chMotsPhrase[i] + "\n");
-			}
+		
+
 		}
 	public static void main(String[] args)
 		{
-		Brain knowey = new Brain("Ceci, est une phrase, sympa, non");
+		
+		}
+	
+	public void penser(String parPhrase)
+		{
+		chPhrase = this.reduirePhrase(parPhrase);
+		chPhraseReponse = this.tab2String(chPhrase);
+		}
+	
+	
+	public String[] reduirePhrase(String parPhrase)
+		{
+		String[] leTampon = parPhrase.split(",");
+		String leTampon1 = new String();
+		
+		for(int i=0; i<leTampon.length; i++)
+			{
+			leTampon1 = leTampon1+ leTampon[i];
+			}
+		leTampon = leTampon1.split(" ");
+		
+		return leTampon;
+		}
+	
+	
+	
+	public String tab2String(String[] parTab)
+		{
+		String leString = null;
+		for(int i=0; i<parTab.length; i++)
+			{
+			leString = leString + parTab[i];
+			}
+		return leString;
+		}
+	public String getReponse()
+		{
+		return chPhraseReponse;
 		}
 	}

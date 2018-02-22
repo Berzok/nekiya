@@ -21,34 +21,53 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	JTextArea chDiscussion;
 	JButton chBouton;
 	String chUtilisateur;
+	JTextArea chUser;
+	JLabel chNekiyaIsTyping;
 	
 	public InterfaceG(FenetreMere parFenetre, String parUtilisateur)
 		{
 		chUtilisateur = parUtilisateur;
 		
 		JPanel lePanel = new JPanel();
+		JPanel lePanel2 = new JPanel();
+		
 		lePanel.setBackground(Color.GRAY);
 		lePanel.setPreferredSize(new Dimension(600, 400));
 		lePanel.setLayout(new BorderLayout(5, 12));
+		Border lePadding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
+		lePanel.setBorder(lePadding);
 		
+		lePanel2.setLayout(new BorderLayout(5, 5));
+		Border lePadding2 = BorderFactory.createEmptyBorder(2, 2, 2, 2);
+		lePanel2.setBorder(lePadding2);
+		lePanel2.setBackground(Color.BLACK);
 		
-		chDiscussion = new JTextArea(2, 0); chDiscussion.setEditable(false); chDiscussion.setLineWrap(true); chDiscussion.setBackground(new Color(255, 255, 255));
-		chSaisie = new JTextArea(2, 0); chSaisie.setLineWrap(true); chSaisie.addKeyListener(this);
+		chDiscussion = new JTextArea();
+		chDiscussion.setEditable(false);
+		chDiscussion.setLineWrap(true);
+		chDiscussion.setBackground(new Color(255, 255, 255));
+		
+		chSaisie = new JTextArea(2, 0);
+		chSaisie.setLineWrap(true);
+		chSaisie.addKeyListener(this);
+		chSaisie.setBorder(lePadding2);
+		
+		chUser = new JTextArea("" + chUtilisateur + ": ");
+		chUser.setEditable(false);
+		chUser.setBackground(Color.gray);
+		
+		chNekiyaIsTyping = new JLabel("Nekiya écrit... ");
 		
 		lePanel.add(chDiscussion, BorderLayout.CENTER);
-		lePanel.add(chSaisie, BorderLayout.SOUTH);
+		lePanel.add(lePanel2, BorderLayout.SOUTH);
+//		lePanel.add(chNekiyaIsTyping, BorderLayout.AFTER_LAST_LINE);
+		lePanel2.add(chUser, BorderLayout.WEST);
+		lePanel2.add(chSaisie);
 		
-		Border padding = BorderFactory.createEmptyBorder(10, 10, 10, 10);
-		lePanel.setBorder(padding);
 		parFenetre.add(lePanel);
 		this.setVisible(true);
 		this.validate();
 		this.repaint();
-		}
-	
-	public Insets getInsets()
-		{
-		return new Insets(10, 10, 10, 10);
 		}
 	
 	
@@ -58,9 +77,10 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		int key = e.getKeyCode();
 		if(key == KeyEvent.VK_ENTER)
 			{
-			chDiscussion.append(chSaisie.getText());
-			chSaisie.setText(null); chSaisie.append(chUtilisateur + ": ");
-			chSaisie.setCaretPosition(0);
+			chDiscussion.append(chUtilisateur + ": " + chSaisie.getText() + "\n");
+			e.consume();
+			chSaisie.setText(null);
+			chSaisie.requestFocus(true);
 			}
 		}
 

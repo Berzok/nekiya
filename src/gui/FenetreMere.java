@@ -10,13 +10,13 @@ public class FenetreMere extends JFrame
 		{
 		super("Nekiya");
 		new JOptionPane();
-		chUtilisateur = JOptionPane.showInputDialog(null, "Qui ï¿½tes-vous ?", " ", JOptionPane.QUESTION_MESSAGE);
+		chUtilisateur = JOptionPane.showInputDialog(null, "Qui êtes-vous ?", " ", JOptionPane.QUESTION_MESSAGE);
 		this.setSize(600, 400);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setVisible(true);
 		InterfaceG laInterface = new InterfaceG(this, chUtilisateur);
-		laInterface.requestFocus();
+		laInterface.chSaisie.requestFocus();
 		}
 	
 	public static void main(String[] args)

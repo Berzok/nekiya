@@ -4,7 +4,7 @@ import java.io.*;
 public class Brain
 	{
 	String[] chTriVirgules;
-	String[][] chTriSegments;
+	String[] chTriSegments;
 	String[] chPhrase;
 	String chPhraseReponse;
 	
@@ -15,7 +15,8 @@ public class Brain
 		}
 	public static void main(String[] args)
 		{
-		
+		Brain mayor = new Brain();
+		mayor.penser("hello a toi, bonjour vous");
 		}
 	
 	public void penser(String parPhrase)
@@ -27,8 +28,8 @@ public class Brain
 	
 	public void decoupagePhrase(String parPhrase)
 		{
-		chTriVirgules = parPhrase.split(",");
 		
+		chTriVirgules = parPhrase.split(", ");
 		String[] leTampon = new String[chTriVirgules.length];
 		for(int i=0; i<chTriVirgules.length; i++)
 			{
@@ -36,12 +37,29 @@ public class Brain
 			}
 		String leTampon2 = tab2String(leTampon);
 		
+		int longueurTriVirgules = chTriVirgules.length;
+		chTriSegments = new String[longueurTriVirgules];
+		String[] leTampon3 = new String[longueurTriVirgules];
+		
 		for(int i=0; i<chTriVirgules.length; i++)
 			{
-			leTampon[i] = chTriVirgules[i];
+			leTampon3 = chTriVirgules[i].split(" ");
+			for(int j=0; j<leTampon3.length; j++)
+				{
+				chTriSegments[j] = leTampon3[j];								
+				}
 			}
-		chTriSegments[0] = leTampon2.split(" ");
 		
+		for(int i=0; i<chTriVirgules.length; i++)
+			{
+			leTampon2 = chTriVirgules[i];
+			System.out.println("t2: " + leTampon2);
+			chTriSegments = leTampon2.split(" ");				
+			}
+		
+				
+		
+		System.out.println("tri segments taille: " + chTriSegments.length);
 		afficherTableau(chTriVirgules);
 		afficherTableau(chTriSegments);
 		}

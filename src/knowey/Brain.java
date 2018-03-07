@@ -4,7 +4,8 @@ import java.io.*;
 public class Brain
 	{
 	String[] chTriVirgules;
-	String[] chTriSegments;
+	int nbreSegments;
+	String[][] chTriSegments;
 	String[] chPhrase;
 	String chPhraseReponse;
 	
@@ -15,8 +16,8 @@ public class Brain
 		}
 	public static void main(String[] args)
 		{
-		Brain mayor = new Brain();
-		mayor.penser("hello a toi, bonjour vous");
+//		Brain mayor = new Brain();
+//		mayor.penser("");
 		}
 	
 	public void penser(String parPhrase)
@@ -28,46 +29,51 @@ public class Brain
 	
 	public void decoupagePhrase(String parPhrase)
 		{
-		
+		if(parPhrase == null)
+			{
+			System.out.println("non");
+			return;
+			}
 		chTriVirgules = parPhrase.split(", ");
-		String[] leTampon = new String[chTriVirgules.length];
+		String[] cpTriVirgules = new String[chTriVirgules.length];
+		nbreSegments = chTriVirgules.length;
+		
+		//On recopie la phrase triée dans un String[]
 		for(int i=0; i<chTriVirgules.length; i++)
 			{
-			leTampon[i] = chTriVirgules[i];
+			cpTriVirgules[i] = chTriVirgules[i];
 			}
-		String leTampon2 = tab2String(leTampon);
 		
-		int longueurTriVirgules = chTriVirgules.length;
-		chTriSegments = new String[longueurTriVirgules];
-		String[] leTampon3 = new String[longueurTriVirgules];
+		//On recopie la phrase triée dans un String
+		String cpTriVirgules2 = tab2String(cpTriVirgules);
 		
-		for(int i=0; i<chTriVirgules.length; i++)
+		//On définit chTriSegments avec le nombre de cases en fonction du nombre de segments
+		chTriSegments = new String[nbreSegments][];
+		
+		for(int i=0; i<chTriSegments.length; i++)
 			{
-			leTampon3 = chTriVirgules[i].split(" ");
-			for(int j=0; j<leTampon3.length; j++)
-				{
-				chTriSegments[j] = leTampon3[j];								
-				}
+			String tempoRaire = cpTriVirgules[i];
+			chTriSegments[i] = tempoRaire.split(" ");
 			}
 		
-		for(int i=0; i<chTriVirgules.length; i++)
-			{
-			leTampon2 = chTriVirgules[i];
-			System.out.println("t2: " + leTampon2);
-			chTriSegments = leTampon2.split(" ");				
-			}
 		
-				
-		
-		System.out.println("tri segments taille: " + chTriSegments.length);
-		afficherTableau(chTriVirgules);
-		afficherTableau(chTriSegments);
+//		afficherTableau1D(chTriVirgules);
+//		afficherTableau2D(chTriSegments);
 		}
 	
 	
 	
 	
-	
+	//Remplit un tableau de String 
+	public String fillString1D(String[] parTab, String parString)
+		{
+		String leString = new String();
+		for(int i=0; i<parTab.length; i++)
+			{
+//			parTab[i] = 
+			}
+		return leString;
+		}
 	
 	public String tab2String(String[] parTab)
 		{
@@ -78,11 +84,23 @@ public class Brain
 			}
 		return leString;
 		}
-	public void afficherTableau(String[] parTab)
+	
+	public void afficherTableau1D(String[] parTab)
 		{
 		for(int i=0; i<parTab.length; i++)
 			{
 			System.out.println(i+": "+parTab[i]);
+			}
+		System.out.println(" ");
+		}
+	public void afficherTableau2D(String[][] parTab)
+		{
+		for(int i=0; i<parTab.length; i++)
+			{
+			for(int j=0; j<parTab[i].length; j++)
+				{
+				System.out.println("["+i+"]["+"j"+"] " + parTab[i][j]);
+				}
 			}
 		}
 	public String getReponse()

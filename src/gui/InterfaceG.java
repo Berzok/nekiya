@@ -61,6 +61,12 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		if(key == KeyEvent.VK_ENTER)
 			{
 			String phraseUser = chSaisie.getText();
+			String[] laPhrase; laPhrase = new String[1]; laPhrase[0] = phraseUser;
+			System.out.println(phraseUser);
+			if(laPhrase[0] == "exit")
+				{
+				System.out.println("Ahh");
+				}
 			this.append(chDiscussion, chUtilisateur+": " + phraseUser + "\n", false);
 			e.consume();
 			chSaisie.setText(null);
@@ -75,6 +81,10 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 			Nekiya.penser(phraseUser);
 			chReponse = Nekiya.getReponse();
 			this.append(chDiscussion, "Nekiya: " + chReponse + "\n", true);
+			}
+		if(key == KeyEvent.VK_ESCAPE)
+			{
+			System.exit(0);
 			}
 		}
 	

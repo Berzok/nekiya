@@ -12,7 +12,6 @@ public class Brain
 	public Brain()
 		{
 		
-
 		}
 	public static void main(String[] args)
 		{
@@ -29,9 +28,8 @@ public class Brain
 	
 	public void decoupagePhrase(String parPhrase)
 		{
-		if(parPhrase == null)
+		if(parPhrase.equals(""))
 			{
-			System.out.println("non");
 			return;
 			}
 		chTriVirgules = parPhrase.split(", ");

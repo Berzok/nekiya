@@ -24,7 +24,6 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	JButton chBouton;
 	String chUtilisateur;
 	JTextArea chUser;
-	JLabel chNekiyaIsTyping;
 	Brain Nekiya;
 	String chReponse;
 	JScrollPane leScroll;
@@ -43,7 +42,6 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		chUser.setEditable(false);
 		chUser.setBackground(Color.gray);
 		
-		chNekiyaIsTyping = new JLabel("Nekiya écrit... ");
 		
 		
 		parFenetre.add(this.createInterface());
@@ -61,11 +59,11 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		if(key == KeyEvent.VK_ENTER)
 			{
 			String phraseUser = chSaisie.getText();
-			String[] laPhrase; laPhrase = new String[1]; laPhrase[0] = phraseUser;
-			System.out.println(phraseUser);
-			if(laPhrase[0] == "exit")
+			String laPhrase = phraseUser;
+			if(laPhrase.equals("exit"))
 				{
-				System.out.println("Ahh");
+				e.consume();
+				this.quitter();
 				}
 			this.append(chDiscussion, chUtilisateur+": " + phraseUser + "\n", false);
 			e.consume();
@@ -134,16 +132,21 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		chDiscussion.setBackground(new Color(255, 255, 255));
 		leScroll = new JScrollPane(chDiscussion);
 		
+		JLabel nekiyaIsTyping = new JLabel("Nekiya écrit... ");
+		nekiyaIsTyping.setForeground(Color.LIGHT_GRAY);
+		
 		chSaisie = new JTextArea(2, 0);
 		chSaisie.setLineWrap(true);
 		chSaisie.addKeyListener(this);
 		chSaisie.setBorder(lePadding2);
 		
 		lePanel.add(leScroll, BorderLayout.CENTER);
-		lePanel.add(lePanel2, BorderLayout.SOUTH);
-//		lePanel.add(chNekiyaIsTyping, BorderLayout.AFTER_LAST_LINE);
+		lePanel2.add(nekiyaIsTyping);
 		lePanel2.add(chUser, BorderLayout.WEST);
 		lePanel2.add(chSaisie);
+		lePanel.add(lePanel2, BorderLayout.SOUTH);
+		
+		
 		
 		return lePanel;
 		}
@@ -160,8 +163,12 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 			{
 			StyleConstants.setForeground(tempoStyle, new Color(119, 136, 153));
 			}
-		
 		return tempoStyle;
+		}
+	
+	public void quitter()
+		{
+		System.exit(0);
 		}
 	
 	@Override

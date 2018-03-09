@@ -24,17 +24,18 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	JButton chBouton;
 	String chUtilisateur;
 	JTextArea chUser;
-	Brain Nekiya;
+	Brain Sylvie;
 	String chReponse;
 	JScrollPane leScroll;
 	SimpleAttributeSet styleUser;
-	SimpleAttributeSet styleNekiya;
+	SimpleAttributeSet styleSylvie;
 	
 	
-	public InterfaceG(Brain nekiyaK, FenetreMere parFenetre, String parUtilisateur)
+	public InterfaceG(Brain sylvieK, FenetreMere parFenetre, String parUtilisateur)
 		{
 		chUtilisateur = parUtilisateur;
-		Nekiya = nekiyaK;
+		Sylvie = sylvieK;
+		Sylvie.chUser = chUtilisateur;
 		
 		
 		
@@ -72,13 +73,13 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 			
 			
 			/**
-			 * Nekiya.penser(String) ==> Conversion de la phrase en tableau splité par les virgules
+			 * Sylvie.penser(String) ==> Conversion de la phrase en tableau splité par les virgules
 			 * 								-
 			 */
 			
-			Nekiya.penser(phraseUser);
-			chReponse = Nekiya.getReponse();
-			this.append(chDiscussion, "Nekiya: " + chReponse + "\n", true);
+			Sylvie.penser(phraseUser);
+			chReponse = Sylvie.getReponse();
+			this.append(chDiscussion, "Sylvie: " + chReponse + "\n", true);
 			}
 		if(key == KeyEvent.VK_ESCAPE)
 			{
@@ -90,12 +91,12 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	
 	
 	
-	public void append(JTextPane parPane, String parString, boolean isNekiya) {
+	public void append(JTextPane parPane, String parString, boolean isSylvie) {
 		   try {
 		      Document doc = parPane.getDocument();
-		      if(isNekiya)
+		      if(isSylvie)
 		      	{
-		    	  doc.insertString(doc.getLength(), parString, styleNekiya); 
+		    	  doc.insertString(doc.getLength(), parString, styleSylvie); 
 		      	}
 		      else
 		      	{
@@ -112,7 +113,7 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		JPanel lePanel2 = new JPanel();
 		
 		styleUser = this.defStyle(false);
-		styleNekiya = this.defStyle(true);
+		styleSylvie = this.defStyle(true);
 		
 		
 		lePanel.setBackground(Color.GRAY);
@@ -132,8 +133,8 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		chDiscussion.setBackground(new Color(255, 255, 255));
 		leScroll = new JScrollPane(chDiscussion);
 		
-		JLabel nekiyaIsTyping = new JLabel("Nekiya écrit... ");
-		nekiyaIsTyping.setForeground(Color.LIGHT_GRAY);
+		JLabel sylvieIsTyping = new JLabel("Sylvie écrit... ");
+		sylvieIsTyping.setForeground(Color.LIGHT_GRAY);
 		
 		chSaisie = new JTextArea(2, 0);
 		chSaisie.setLineWrap(true);
@@ -141,7 +142,7 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		chSaisie.setBorder(lePadding2);
 		
 		lePanel.add(leScroll, BorderLayout.CENTER);
-		lePanel2.add(nekiyaIsTyping);
+		lePanel2.add(sylvieIsTyping);
 		lePanel2.add(chUser, BorderLayout.WEST);
 		lePanel2.add(chSaisie);
 		lePanel.add(lePanel2, BorderLayout.SOUTH);
@@ -151,11 +152,11 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 		return lePanel;
 		}
 	
-	public SimpleAttributeSet defStyle(boolean isNekiya)
+	public SimpleAttributeSet defStyle(boolean isSylvie)
 		{
 		SimpleAttributeSet tempoStyle = new SimpleAttributeSet();
 		
-		if(isNekiya)
+		if(isSylvie)
 			{
 			StyleConstants.setForeground(tempoStyle, new Color(175, 72, 141));
 			}

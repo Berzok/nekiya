@@ -8,10 +8,12 @@ public class Brain
 	String[][] chTriSegments;
 	String[] chPhrase;
 	String chPhraseReponse;
+	Connaissance chKnowledge;
+	public String chUser;
 	
 	public Brain()
 		{
-		
+		chKnowledge = new Connaissance();
 		}
 	public static void main(String[] args)
 		{
@@ -22,6 +24,7 @@ public class Brain
 	public void penser(String parPhrase)
 		{
 		this.decoupagePhrase(parPhrase);
+		this.consulterConnaissance(chTriSegments);
 //		chPhraseReponse = this.tab2String(chPhrase);
 		}
 	
@@ -59,6 +62,23 @@ public class Brain
 //		afficherTableau2D(chTriSegments);
 		}
 	
+	
+	public void consulterConnaissance(String[][] parTab)
+		{
+		for(int i=0; i<parTab.length; i++)
+			{
+			for(int j=0; j<parTab[i].length; j++)
+				{
+				for(int k=0; k<chKnowledge.chSalutations.length; k++)
+					{
+					if(parTab[i][j].equals(chKnowledge.chSalutations[k]))
+						{
+						this.setReponse(chKnowledge.chSalutations[k] + " " + chUser + " !");
+						}
+					}
+				}
+			}
+		}
 	
 	
 	
@@ -100,6 +120,10 @@ public class Brain
 				System.out.println("["+i+"]["+"j"+"] " + parTab[i][j]);
 				}
 			}
+		}
+	public void setReponse(String parString)
+		{
+		chPhraseReponse = parString;
 		}
 	public String getReponse()
 		{

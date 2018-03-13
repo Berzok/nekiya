@@ -19,6 +19,10 @@ import javax.swing.text.StyleConstants;
 
 public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	JTextArea chSaisie;
 	JTextPane chDiscussion;
 	JButton chBouton;

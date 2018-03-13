@@ -1,5 +1,5 @@
 package knowey;
-import java.io.*;
+//import java.io.*;
 
 public class Brain
 	{
@@ -9,11 +9,13 @@ public class Brain
 	String[] chPhrase;
 	String chPhraseReponse;
 	Connaissance chKnowledge;
+	DejaVu chAvant;
 	public String chUser;
 	
 	public Brain()
 		{
 		chKnowledge = new Connaissance();
+		chAvant = new DejaVu();
 		}
 	public static void main(String[] args)
 		{
@@ -45,9 +47,6 @@ public class Brain
 			cpTriVirgules[i] = chTriVirgules[i];
 			}
 		
-		//On recopie la phrase triée dans un String
-		String cpTriVirgules2 = tab2String(cpTriVirgules);
-		
 		//On définit chTriSegments avec le nombre de cases en fonction du nombre de segments
 		chTriSegments = new String[nbreSegments][];
 		
@@ -65,19 +64,7 @@ public class Brain
 	
 	public void consulterConnaissance(String[][] parTab)
 		{
-		for(int i=0; i<parTab.length; i++)
-			{
-			for(int j=0; j<parTab[i].length; j++)
-				{
-				for(int k=0; k<chKnowledge.chSalutations.length; k++)
-					{
-					if(parTab[i][j].equals(chKnowledge.chSalutations[k]))
-						{
-						this.setReponse(chKnowledge.chSalutations[k] + " " + chUser + " !");
-						}
-					}
-				}
-			}
+		this.chKnowledge.direBonjour(parTab);
 		}
 	
 	
@@ -127,6 +114,8 @@ public class Brain
 		}
 	public String getReponse()
 		{
-		return chPhraseReponse;
+		String laPhrase = chPhraseReponse;
+		chPhraseReponse = null;
+		return laPhrase;
 		}
 	}

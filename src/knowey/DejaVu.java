@@ -2,7 +2,7 @@ package knowey;
 
 public class DejaVu
 	{
-	boolean chBonjour = true;
+	boolean chBonjour = false;
 	int[] chPIDSujets = {0, 1, 2};
 	public DejaVu()
 		{

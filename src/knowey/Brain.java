@@ -1,5 +1,5 @@
 package knowey;
-//import java.io.*;
+import java.lang.*;
 
 public class Brain
 	{
@@ -14,7 +14,7 @@ public class Brain
 	
 	public Brain()
 		{
-		chKnowledge = new Connaissance();
+		chKnowledge = new Connaissance(this);
 		chAvant = new DejaVu();
 		}
 	public static void main(String[] args)

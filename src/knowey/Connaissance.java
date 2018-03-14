@@ -7,7 +7,7 @@ import java.util.*;
 public class Connaissance
 	{
 	Brain nekiyaK;
-	final String[] chSalutations = {"bonjour", "salut", "coucou", "hello"};
+	final String[] chSalutations = {"bonjour", "salut", "coucou", "hello", "hé", "hey"};
 	String[] chAdieux;
 	DejaVu chDiscussionAvant;
 	public Connaissance(Brain leBrain)
@@ -23,11 +23,11 @@ public class Connaissance
 				{
 				for(int j=0; j<parTab[i].length; j++)
 					{
-					for(int k=0; k<chKnowledge.chSalutations.length; k++)
+					for(int k=0; k<this.chSalutations.length; k++)
 						{
-						if(parTab[i][j].equals(chKnowledge.chSalutations[k]))
+						if(parTab[i][j].equals(this.chSalutations[k]))
 							{
-							this.setReponse(chKnowledge.chSalutations[k] + " " + chUser + " !");
+							nekiyaK.setReponse(this.chSalutations[new Random().nextInt(this.chSalutations.length)+1] + " " + nekiyaK.chUser + " !");
 							this.chDiscussionAvant.chBonjour = true;
 							}
 						}

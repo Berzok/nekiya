@@ -16,6 +16,8 @@ import javax.swing.text.Document;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
+import java.util.concurrent.*;
+
 
 public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	{
@@ -74,7 +76,7 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 			e.consume();
 			chSaisie.setText(null);
 			chSaisie.requestFocus(true);
-			
+			e.consume();
 			
 			/**
 			 * Sylvie.penser(String) ==> Conversion de la phrase en tableau splité par les virgules
@@ -83,6 +85,7 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 			
 			Sylvie.penser(phraseUser);
 			chReponse = Sylvie.getReponse();
+//			attendre();
 			this.append(chDiscussion, "Sylvie: " + chReponse + "\n", true);
 			}
 		if(key == KeyEvent.VK_ESCAPE)
@@ -94,7 +97,17 @@ public class InterfaceG extends JPanel implements ActionListener, KeyListener
 	
 	
 	
-	
+	public void attendre()
+		{
+		try
+			{
+			Thread.sleep(750);
+			}
+		catch (InterruptedException e)
+			{
+			e.printStackTrace();
+			}
+		}
 	public void append(JTextPane parPane, String parString, boolean isSylvie) {
 		   try {
 		      Document doc = parPane.getDocument();
